@@ -27,16 +27,6 @@ export class GameOfLifeRunner {
                 if (x === 0 && y === 0) {
                     return
                 }
-                if(array.getValueAt(point.x, point.y)){
-                    console.log(
-                        point.x,
-                        point.y,
-                        array.getValueAt(
-                            Utils.positiveModulo(point.x + x, array.width),
-                            Utils.positiveModulo(point.y + y, array.height)
-                        )
-                    )
-                }
                 sum += array.getValueAt(
                     Utils.positiveModulo(point.x + x, array.width),
                     Utils.positiveModulo(point.y + y, array.height)

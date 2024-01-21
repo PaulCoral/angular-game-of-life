@@ -1,6 +1,18 @@
-<p>game-of-life works!</p>
-<app-game-grid
-    [array]="array"
-    (onGridElemClicked)="onGridElemClicked($event)"
-></app-game-grid>
-<button (click)="onButtonClicked()">{{ buttonText }}</button>
+<div style="display: flex;">
+    <div style="flex: 1;">
+        <h3>TODO : </h3>
+        <ul>
+            <li>Add bouding box</li>
+            <li>try with canvas</li>
+        </ul>
+        <p>game-of-life works!</p>
+        <button (click)="onButtonClicked()">{{ buttonText }}</button>
+    </div>
+    <div style="flex: 3;">
+        <app-game-canvas-grid
+            [array]="array"
+            [nextSimStepObs]="nextSimStepSubject.asObservable()"
+            [cellSize]="cellSize"
+        ></app-game-canvas-grid>
+    </div>
+</div>

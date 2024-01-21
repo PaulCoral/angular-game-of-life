@@ -2,24 +2,26 @@ import { Component } from '@angular/core';
 import { GameGridComponent } from '../game-grid/game-grid.component';
 import { Array2D } from '../../models/array-2d';
 import { Point2D } from '../../models/point-2d';
-import { Observable, Subscription, concat, forkJoin, interval, of, repeat, timer, zip } from 'rxjs';
+import { Observable, Subject, Subscription, concat, forkJoin, interval, of, repeat, tap, timer, zip } from 'rxjs';
 import { GameOfLifeRunner } from '../../models/game-of-life-runner';
+import { GameCanvasGridComponent } from '../game-canvas-grid/game-canvas-grid.component';
 
 @Component({
   selector: 'app-game-of-life',
   standalone: true,
-  imports: [GameGridComponent],
+  imports: [GameGridComponent, GameCanvasGridComponent],
   templateUrl: './game-of-life.component.html',
   styleUrl: './game-of-life.component.sass'
 })
 export class GameOfLifeComponent {
-  width = 50
-  height = 50
+  width = 90
+  height = 90
+  cellSize = 10
   array = this.createDefaultArray()
-  simInterval = 50
+  simInterval = 1
   running = false
   subscription?: Subscription
-
+  nextSimStepSubject = new Subject<void>()
 
   onGridElemClicked(point: Point2D) {
     const {x, y} = point
@@ -47,6 +49,7 @@ export class GameOfLifeComponent {
       }),
       timer(this.simInterval)
     ).pipe(
+      tap(() => this.nextSimStepSubject.next()),
       repeat()
     ).subscribe()
   }
@@ -58,6 +61,6 @@ export class GameOfLifeComponent {
   }
 
   createDefaultArray() {
-    return new Array2D(this.width, this.height, () => Math.random() < 0.1 ? true : false)
+    return new Array2D(this.width, this.height, () => Math.random() < 0.5 ? true : false)
   }
 }
