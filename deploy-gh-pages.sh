@@ -9,6 +9,7 @@ mv dist/angular-game-of-life/browser/* .
 
 git add .
 git commit
+git push
 
 git checkout main
 
