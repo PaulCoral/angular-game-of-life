@@ -13,10 +13,10 @@ import { GameOfLifeRunner } from '../../models/game-of-life-runner';
   styleUrl: './game-of-life.component.sass'
 })
 export class GameOfLifeComponent {
-  width = 250
-  height = 100
+  width = 50
+  height = 50
   array = this.createDefaultArray()
-  simInterval = 10
+  simInterval = 50
   running = false
   subscription?: Subscription
 
@@ -58,6 +58,6 @@ export class GameOfLifeComponent {
   }
 
   createDefaultArray() {
-    return new Array2D(this.width, this.height, () => Math.random() < 0.2 ? true : false)
+    return new Array2D(this.width, this.height, () => Math.random() < 0.1 ? true : false)
   }
 }
