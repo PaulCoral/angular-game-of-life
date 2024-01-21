@@ -1,0 +1,17 @@
+<p>game-grid works!</p>
+@if (array) {
+    <table>
+        @for (rows of array.toRows(); track y; let y = $index) {
+            <tr>
+                @for (elem of rows; track x; let x = $index) {
+                    <td 
+                        [style.background]="elem ? 'gold' : 'white'"
+                        (mouseenter)="_onGridClicked(x, y)"
+                    ></td>
+                }
+            </tr>
+        }
+    </table>
+} @else {
+    <p>Error</p>
+}

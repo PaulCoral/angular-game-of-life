@@ -1,0 +1,6 @@
+<p>game-of-life works!</p>
+<app-game-grid
+    [array]="array"
+    (onGridElemClicked)="onGridElemClicked($event)"
+></app-game-grid>
+<button (click)="onButtonClicked()">{{ buttonText }}</button>
